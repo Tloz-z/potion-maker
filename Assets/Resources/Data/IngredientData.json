@@ -1,0 +1,16 @@
+{
+  "ingredients": [
+    {
+      "name": "leaf_green",
+      "price": "1"
+    },
+    {
+      "name": "leaf_red",
+      "price": "1"
+    },
+    {
+      "name": "leaf_blue",
+      "price": "1"
+    }
+  ]
+}
