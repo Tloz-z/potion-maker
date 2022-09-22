@@ -10,6 +10,8 @@ public class SoundManager
     // 음원 -> AudioClip
     // 귀 -> AudioListener -> 디폴트로 카메라에 넣어져있음 -> Scene에 1개만 있으면 됨
 
+    private const float BGM_VOLUME = 0.2f;
+
     public void Init()
     {
         GameObject root = GameObject.Find("@Sound");
@@ -57,6 +59,7 @@ public class SoundManager
             if (audioSource.isPlaying)
                 audioSource.Stop();
 
+            audioSource.volume = BGM_VOLUME;
             audioSource.pitch = pitch;
             audioSource.clip = audioClip;
             audioSource.Play();
