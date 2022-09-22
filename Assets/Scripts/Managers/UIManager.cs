@@ -7,8 +7,8 @@ public class UIManager
     int _order = 10;
 
     Stack<UI_Popup> _popupStack = new Stack<UI_Popup>();
-    public UI_Scene SceneHead { get; private set; } = null;
-    public UI_Scene SceneTail { get; private set; } = null;
+    public UI_Head SceneHead { get; private set; } = null;
+    public UI_Tail SceneTail { get; private set; } = null;
 
     public GameObject Root
     {
@@ -50,17 +50,17 @@ public class UIManager
         return go.GetOrAddComponent<T>();
     }
 
-    public T ShowSceneUI<T>(bool isHead, string name = null) where T : UI_Scene
+    public T ShowSceneUI<T>(string name = null) where T : UI_Scene
     {
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
         GameObject go = Managers.Resource.Instantiate($"UI/Scene/{name}");
         T sceneUI = Util.GetOrAddComponent<T>(go);
-        if (isHead)
-            SceneHead = sceneUI;
+        if (typeof(T) == typeof(UI_Head))
+            SceneHead = sceneUI as UI_Head;
         else
-            SceneTail = sceneUI;
+            SceneTail = sceneUI as UI_Tail;
 
         go.transform.SetParent(Root.transform);
 

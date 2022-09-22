@@ -10,10 +10,12 @@ public interface ILoader<Key, Value>
 public class DataManager
 {
     public Dictionary<string, Ingredient> IngredientDict { get; private set; } = new Dictionary<string, Ingredient>();
+    public Dictionary<string, Potion> PotionDict { get; private set; } = new Dictionary<string, Potion>();
 
     public void Init()
     {
         IngredientDict = LoadJson<IngredientData, string, Ingredient>("IngredientData").MakeDict();
+        PotionDict = LoadJson<PotionData, string, Potion>("PotionData").MakeDict();
     }
 
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>

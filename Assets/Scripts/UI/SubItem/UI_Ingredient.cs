@@ -7,7 +7,7 @@ public class UI_Ingredient : UI_Base
 {
     private float _speed = 500.0f;
     private RectTransform _rectTransform;
-    public Ingredient Ingredient { get; set; }
+    public string IngredientName { get; set; }
 
     public override void Init()
     {
@@ -26,8 +26,10 @@ public class UI_Ingredient : UI_Base
         if (_rectTransform.anchoredPosition.x > 700.0f)
             Managers.Resource.Destroy(gameObject);
     }
+
     void OnClick(PointerEventData evt)
     {
+        Managers.UI.SceneTail.PutIngredient(IngredientName);
         Managers.Resource.Destroy(gameObject);
     }
 }

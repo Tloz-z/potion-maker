@@ -31,6 +31,8 @@ public class UI_Head : UI_Scene
         IngredientBar
     }
 
+    private int gold = 0;
+
     void Start()
     {
         Init();
@@ -43,6 +45,8 @@ public class UI_Head : UI_Scene
         Bind<Text>(typeof(Texts));
         Bind<Button>(typeof(Buttons));
         Bind<GameObject>(typeof(GameObjects));
+        gold = 0;
+        GetText((int)Texts.GoldText).text = $"{gold}";
 
         float scaleHeight = ((float)Screen.width / Screen.height) / ((float)9 / 16);
 
@@ -58,7 +62,14 @@ public class UI_Head : UI_Scene
         CreateIngredient();
     }
 
-    float _ingredientDelay = 1.0f;
+    public void SellPotion(int price)
+    {
+        gold += price;
+        GetText((int)Texts.GoldText).text = $"{gold}";
+    }
+
+
+    float _ingredientDelay = 0.7f;
     float _currentTime = 0.0f;
     void CreateIngredient()
     {
@@ -70,12 +81,11 @@ public class UI_Head : UI_Scene
         _currentTime = 0.0f;
 
         int idx = UnityEngine.Random.Range(0, (int)IngredientNames.max_count);
-        string name = Enum.GetName(typeof(IngredientNames), idx);
+        string ingredientName = Enum.GetName(typeof(IngredientNames), idx);
 
-        Ingredient ingredient = Managers.Data.IngredientDict[name];
-        Sprite sprite = Managers.Resource.Load<Sprite>($"Art/Ingredient/{name}");
+        Sprite sprite = Managers.Resource.Load<Sprite>($"Art/Ingredient/{ingredientName}");
         UI_Ingredient item = Managers.UI.makeSubItem<UI_Ingredient>(GetObject((int)GameObjects.IngredientBar).transform);
-        item.Ingredient = ingredient;
+        item.IngredientName = ingredientName;
         item.transform.position = GetObject((int)GameObjects.IngredientBar).transform.position;
         item.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         item.gameObject.GetComponent<Image>().sprite = sprite;

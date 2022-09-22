@@ -2,15 +2,18 @@
   "ingredients": [
     {
       "name": "leaf_green",
-      "price": "1"
+      "price": "1",
+      "potionName": "leaf_green"
     },
     {
       "name": "leaf_red",
-      "price": "1"
+      "price": "1",
+      "potionName": "leaf_red"
     },
     {
       "name": "leaf_blue",
-      "price": "1"
+      "price": "1",
+      "potionName": "leaf_blue"
     }
   ]
 }

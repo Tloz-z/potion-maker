@@ -1,0 +1,19 @@
+﻿{
+  "potions": [
+    {
+      "fileName": "leaf_green",
+      "name": "초록 새싹",
+      "price": "10"
+    },
+    {
+      "fileName": "leaf_red",
+      "name": "빨간 새싹",
+      "price": "10"
+    },
+    {
+      "fileName": "leaf_blue",
+      "name": "파란 새싹",
+      "price": "10"
+    }
+  ]
+}

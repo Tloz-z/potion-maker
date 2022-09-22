@@ -11,8 +11,8 @@ public class GameScene : BaseScene
 
     void Start()
     {
-        Managers.UI.ShowSceneUI<UI_Head>(true);
-        Managers.UI.ShowSceneUI<UI_Tail>(false);
+        Managers.UI.ShowSceneUI<UI_Head>();
+        Managers.UI.ShowSceneUI<UI_Tail>();
         Managers.Sound.Play("BGM/Main", Define.Sound.Bgm);
     }
 
