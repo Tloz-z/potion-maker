@@ -10,9 +10,8 @@ public class UI_Tail : UI_Scene
 
     enum Images
     {
-        SellImage,
-        ReinforceImage,
-        PotionImage
+        PotionImage,
+        GoldImage
     }
 
     enum Texts
@@ -21,7 +20,8 @@ public class UI_Tail : UI_Scene
         ReinforceText,
         PotionLevelText,
         NameText,
-        SuccessRatioText
+        SuccessRatioText,
+        PriceText
     }
 
     public enum MakeStatus
@@ -46,7 +46,7 @@ public class UI_Tail : UI_Scene
 
         Bind<Image>(typeof(Images));
         Bind<Text>(typeof(Texts));
-        GetImage((int)Images.SellImage).gameObject.BindEvent(ClickSellButton);
+        GetText((int)Texts.SellText).gameObject.BindEvent(ClickSellButton);
 
         Clear();
     }
@@ -80,17 +80,27 @@ public class UI_Tail : UI_Scene
         potionFileName = potion.fileName;
         currentPrice = potion.price;
         currentLevel = 1;
-        Sprite potionSprite = Managers.Resource.Load<Sprite>($"Art/Ingredient/{potionFileName}");
+        Sprite[] potionSprites = Resources.LoadAll<Sprite>($"Art/Potion/Potions");
+        Sprite potionSprite = null;
+        foreach (Sprite sprite in potionSprites)
+        {
+            if (sprite.name == potionFileName)
+            {
+                potionSprite = sprite;
+                break;
+            }
+        }
 
         GetImage((int)Images.PotionImage).sprite = potionSprite;
-        GetImage((int)Images.SellImage).color = new Color32(255, 255, 255, 255);
-        GetImage((int)Images.ReinforceImage).color = new Color32(255, 255, 255, 255);
+        GetImage((int)Images.PotionImage).color = new Color32(255, 255, 255, 255);
+        GetImage((int)Images.GoldImage).color = new Color32(255, 255, 255, 255);
 
         GetText((int)Texts.NameText).text = potion.name;
-        GetText((int)Texts.SellText).text = $"{currentPrice}원\n포션 판매";
+        GetText((int)Texts.SellText).text = $"포션 판매";
         GetText((int)Texts.ReinforceText).text = "강화 도전";
         GetText((int)Texts.PotionLevelText).text = $"Lv.{currentLevel}";
-        GetText((int)Texts.SuccessRatioText).text = "90%";
+        GetText((int)Texts.SuccessRatioText).text = "성공 확률 : 90%";
+        GetText((int)Texts.PriceText).text = $"{currentPrice}";
 
         CurrentStatus = MakeStatus.Making;
     }
@@ -98,7 +108,7 @@ public class UI_Tail : UI_Scene
     void ProceedCook(Ingredient ingredient)
     {
         currentPrice += ingredient.price;
-        GetText((int)Texts.SellText).text = $"{currentPrice}원\n포션 판매";
+        GetText((int)Texts.PriceText).text = $"{currentPrice}";
     }
 
     void ClickSellButton(PointerEventData evt)
@@ -113,14 +123,15 @@ public class UI_Tail : UI_Scene
     void Clear()
     {
         GetImage((int)Images.PotionImage).sprite = null;
-        GetImage((int)Images.SellImage).color = new Color32(136, 136, 136, 255);
-        GetImage((int)Images.ReinforceImage).color = new Color32(136, 136, 136, 255);
+        GetImage((int)Images.PotionImage).color = new Color32(255, 255, 255, 0);
+        GetImage((int)Images.GoldImage).color = new Color32(255, 255, 255, 0);
 
         GetText((int)Texts.NameText).text = "";
-        GetText((int)Texts.SellText).text = "포션 판매";
-        GetText((int)Texts.ReinforceText).text = "강화 도전";
+        GetText((int)Texts.SellText).text = "";
+        GetText((int)Texts.ReinforceText).text = "";
         GetText((int)Texts.PotionLevelText).text = "";
         GetText((int)Texts.SuccessRatioText).text = "";
+        GetText((int)Texts.PriceText).text = "";
 
         potionFileName = null;
         currentPrice = 0;

@@ -44,6 +44,7 @@ public class UIManager
             name = typeof(T).Name;
 
         GameObject go = Managers.Resource.Instantiate($"UI/SubItem/{name}");
+
         if (parent != null)
             go.transform.SetParent(parent);
 

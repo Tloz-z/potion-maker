@@ -2,17 +2,17 @@
   "potions": [
     {
       "fileName": "leaf_green",
-      "name": "초록 새싹",
+      "name": "초록 물약",
       "price": "10"
     },
     {
       "fileName": "leaf_red",
-      "name": "빨간 새싹",
+      "name": "냥이 수혈팩",
       "price": "10"
     },
     {
       "fileName": "leaf_blue",
-      "name": "파란 새싹",
+      "name": "비명 지르는 문어씨",
       "price": "10"
     }
   ]

@@ -48,6 +48,7 @@ public class ResourceManager
 
         // 만약에 풀링이 필요한 아이라면 -> 풀링 매니져한테 위탁
         Poolable poolable = go.GetComponent<Poolable>();
+
         if (poolable != null)
         {
             Managers.Pool.Push(poolable);
