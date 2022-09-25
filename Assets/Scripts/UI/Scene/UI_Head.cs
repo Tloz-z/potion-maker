@@ -74,6 +74,11 @@ public class UI_Head : UI_Scene
     float _currentTime = 0.0f;
     void CreateIngredient()
     {
+        if (Managers.UI.SceneTail.CurrentStatus == UI_Tail.MakeStatus.Nothing)
+            _ingredientDelay = 0.7f;
+        else
+            _ingredientDelay = 0.1f;
+
         _currentTime += Time.deltaTime;
         if (_currentTime < _ingredientDelay)
         {

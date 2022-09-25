@@ -3,17 +3,185 @@
     {
       "fileName": "leaf_green",
       "name": "초록 물약",
-      "price": "10"
+      "price": "10",
+      "upgrades": [
+        {
+          "level": "1",
+          "ratio": "90",
+          "bonus": "1.05f"
+        },
+        {
+          "level": "2",
+          "ratio": "85",
+          "bonus": "1.2f"
+        }
+      ]
     },
     {
       "fileName": "leaf_red",
       "name": "냥이 수혈팩",
-      "price": "10"
+      "price": "10",
+      "upgrades": [
+        {
+          "level": "1",
+          "ratio": "90",
+          "bonus": "1.05f"
+        },
+        {
+          "level": "2",
+          "ratio": "85",
+          "bonus": "1.2f"
+        }
+      ]
     },
     {
       "fileName": "leaf_blue",
       "name": "비명 지르는 문어씨",
-      "price": "10"
+      "price": "10",
+      "upgrades": [
+        {
+          "level": "1",
+          "ratio": "90",
+          "bonus": "1.05f"
+        },
+        {
+          "level": "2",
+          "ratio": "85",
+          "bonus": "1.2f"
+        }
+      ]
+    },
+    {
+      "fileName": "1",
+      "name": "비명 지르는 문어씨",
+      "price": "100",
+      "upgrades": [
+        {
+          "level": "1",
+          "ratio": "80",
+          "bonus": "1.5f"
+        },
+        {
+          "level": "2",
+          "ratio": "70",
+          "bonus": "2.0f"
+        },
+        {
+          "level": "3",
+          "ratio": "60",
+          "bonus": "2.5f"
+        }
+      ]
+    },
+    {
+      "fileName": "2",
+      "name": "비명 지르는 문어씨",
+      "price": "100",
+      "upgrades": [
+        {
+          "level": "1",
+          "ratio": "80",
+          "bonus": "1.5f"
+        },
+        {
+          "level": "2",
+          "ratio": "70",
+          "bonus": "2.0f"
+        },
+        {
+          "level": "3",
+          "ratio": "60",
+          "bonus": "2.5f"
+        }
+      ]
+    },
+    {
+      "fileName": "3",
+      "name": "비명 지르는 문어씨",
+      "price": "100",
+      "upgrades": [
+        {
+          "level": "1",
+          "ratio": "80",
+          "bonus": "1.5f"
+        },
+        {
+          "level": "2",
+          "ratio": "70",
+          "bonus": "2.0f"
+        },
+        {
+          "level": "3",
+          "ratio": "60",
+          "bonus": "2.5f"
+        }
+      ]
+    },
+    {
+      "fileName": "4",
+      "name": "비명 지르는 문어씨",
+      "price": "1000",
+      "upgrades": [
+        {
+          "level": "1",
+          "ratio": "70",
+          "bonus": "2.0f"
+        },
+        {
+          "level": "2",
+          "ratio": "50",
+          "bonus": "3.0f"
+        },
+        {
+          "level": "2",
+          "ratio": "30",
+          "bonus": "5.0f"
+        }
+      ]
+    },
+    {
+      "fileName": "5",
+      "name": "비명 지르는 문어씨",
+      "price": "1000",
+      "upgrades": [
+        {
+          "level": "1",
+          "ratio": "70",
+          "bonus": "2.0f"
+        },
+        {
+          "level": "2",
+          "ratio": "50",
+          "bonus": "3.0f"
+        },
+        {
+          "level": "2",
+          "ratio": "30",
+          "bonus": "5.0f"
+        }
+      ]
+    },
+    {
+      "fileName": "6",
+      "name": "비명 지르는 문어씨",
+      "price": "1000",
+      "upgrades": [
+        {
+          "level": "1",
+          "ratio": "70",
+          "bonus": "2.0f"
+        },
+        {
+          "level": "2",
+          "ratio": "50",
+          "bonus": "3.0f"
+        },
+        {
+          "level": "2",
+          "ratio": "30",
+          "bonus": "5.0f"
+        }
+      ]
     }
   ]
 }

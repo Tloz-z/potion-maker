@@ -11,6 +11,9 @@ public class UI_EventHandler : MonoBehaviour, IPointerClickHandler, IDragHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (Managers.UI.SceneTail.CurrentStatus == UI_Tail.MakeStatus.Reinforcing)
+            return;
+
         if (OnClickHandler != null)
             OnClickHandler.Invoke(eventData);
     }

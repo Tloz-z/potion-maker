@@ -35,6 +35,15 @@ public class Potion
     public string fileName;
     public string name;
     public int price;
+    public List<Upgrade> upgrades = new List<Upgrade>();
+}
+
+[Serializable]
+public class Upgrade
+{
+    public int level;
+    public int ratio;
+    public float bonus;
 }
 
 [Serializable]

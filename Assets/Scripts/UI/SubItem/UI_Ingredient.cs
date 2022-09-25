@@ -34,6 +34,17 @@ public class UI_Ingredient : UI_Base
 
     void Update()
     {
+        ////////////////////나중에 수정
+        if (Managers.UI.SceneTail.CurrentStatus == UI_Tail.MakeStatus.Nothing)
+        {
+            _moveSpeed = 500.0f;
+        }
+        else
+        {
+            _moveSpeed = 1000.0f;
+        }
+        ///////////////////////////////////////
+
         if (_isClick)
         {
             _deltaTime += Time.deltaTime * _putSpeed;

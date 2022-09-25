@@ -11,7 +11,8 @@ public class UI_Tail : UI_Scene
     enum Images
     {
         PotionImage,
-        GoldImage
+        GoldImage,
+        FullImage
     }
 
     enum Texts
@@ -21,19 +22,33 @@ public class UI_Tail : UI_Scene
         PotionLevelText,
         NameText,
         SuccessRatioText,
+        SuccessBonusText,
         PriceText
+    }
+
+    enum GameObjects
+    {
+        Potion,
+        Sell,
+        Reinforce,
+        Gauge
     }
 
     public enum MakeStatus
     {
         Nothing,
-        Making
+        Making,
+        Reinforcing
     }
     public MakeStatus CurrentStatus { get; private set; } = MakeStatus.Nothing;
 
     private string potionFileName = null;
     private int currentPrice = 0;
     private int currentLevel = 0;
+    private float reinforceDelay = 2.5f;
+    private float deltaTime = 0f;
+
+    private RectTransform gaugeRect = null;
 
     void Start()
     {
@@ -46,14 +61,29 @@ public class UI_Tail : UI_Scene
 
         Bind<Image>(typeof(Images));
         Bind<Text>(typeof(Texts));
+        Bind<GameObject>(typeof(GameObjects));
         GetText((int)Texts.SellText).gameObject.BindEvent(ClickSellButton);
+        GetText((int)Texts.ReinforceText).gameObject.BindEvent(ClickReinforceButton);
+
+        gaugeRect = GetImage((int)Images.FullImage).gameObject.GetComponent<RectTransform>();
 
         Clear();
     }
 
     void Update()
     {
-
+        if (CurrentStatus == MakeStatus.Reinforcing)
+        {
+            deltaTime += Time.deltaTime;
+            gaugeRect.sizeDelta = new Vector2((deltaTime / reinforceDelay) * 920f, 100f);
+            if (deltaTime > reinforceDelay)
+            {
+                CurrentStatus = MakeStatus.Making;
+                deltaTime = 0f;
+                Get<GameObject>((int)GameObjects.Gauge).SetActive(false);
+                Reinforce();
+            }
+        }
     }
 
     public void PutIngredient(string ingredientName)
@@ -91,15 +121,15 @@ public class UI_Tail : UI_Scene
             }
         }
 
-        GetImage((int)Images.PotionImage).sprite = potionSprite;
-        GetImage((int)Images.PotionImage).color = new Color32(255, 255, 255, 255);
-        GetImage((int)Images.GoldImage).color = new Color32(255, 255, 255, 255);
+        Get<GameObject>((int)GameObjects.Potion).SetActive(true);
+        Get<GameObject>((int)GameObjects.Sell).SetActive(true);
+        Get<GameObject>((int)GameObjects.Reinforce).SetActive(true);
 
+        GetImage((int)Images.PotionImage).sprite = potionSprite;
         GetText((int)Texts.NameText).text = potion.name;
-        GetText((int)Texts.SellText).text = $"포션 판매";
-        GetText((int)Texts.ReinforceText).text = "강화 도전";
-        GetText((int)Texts.PotionLevelText).text = $"Lv.{currentLevel}";
-        GetText((int)Texts.SuccessRatioText).text = "성공 확률 : 90%";
+        GetText((int)Texts.PotionLevelText).text = $"Lv.1";
+        GetText((int)Texts.SuccessRatioText).text = $"성공 확률 : {potion.upgrades[0].ratio}%";
+        GetText((int)Texts.SuccessBonusText).text = $"성공 배율 : x{potion.upgrades[0].bonus}";
         GetText((int)Texts.PriceText).text = $"{currentPrice}";
 
         CurrentStatus = MakeStatus.Making;
@@ -109,6 +139,46 @@ public class UI_Tail : UI_Scene
     {
         currentPrice += ingredient.price;
         GetText((int)Texts.PriceText).text = $"{currentPrice}";
+    }
+
+    void ClickReinforceButton(PointerEventData evt)
+    {
+        if (CurrentStatus == MakeStatus.Nothing)
+            return;
+
+        CurrentStatus = MakeStatus.Reinforcing;
+        Get<GameObject>((int)GameObjects.Gauge).SetActive(true);
+        gaugeRect.sizeDelta = new Vector2(0f, 100f);
+    }
+
+    void Reinforce()
+    {
+        Potion potion = Managers.Data.PotionDict[potionFileName];
+        int seed = UnityEngine.Random.Range(0, 100);
+
+        if (seed < potion.upgrades[currentLevel - 1].ratio)
+        {
+            currentPrice = (int)(currentPrice * potion.upgrades[currentLevel - 1].bonus + 0.51f);
+            GetText((int)Texts.PriceText).text = $"{currentPrice}";
+
+            currentLevel++;
+            if (currentLevel > potion.upgrades.Count)
+            {
+                GetText((int)Texts.PotionLevelText).text = $"Lv.MAX";
+                Get<GameObject>((int)GameObjects.Reinforce).SetActive(false);
+            }
+            else
+            {
+                GetText((int)Texts.PotionLevelText).text = $"Lv.{currentLevel}";
+                GetText((int)Texts.SuccessRatioText).text = $"성공 확률 : {potion.upgrades[currentLevel - 1].ratio}%";
+                GetText((int)Texts.SuccessBonusText).text = $"성공 배율 : x{potion.upgrades[currentLevel - 1].bonus}";
+            }
+        }
+        else
+        {
+            Managers.UI.SceneHead.SellPotion(0);
+            Clear();
+        }
     }
 
     void ClickSellButton(PointerEventData evt)
@@ -122,16 +192,10 @@ public class UI_Tail : UI_Scene
 
     void Clear()
     {
-        GetImage((int)Images.PotionImage).sprite = null;
-        GetImage((int)Images.PotionImage).color = new Color32(255, 255, 255, 0);
-        GetImage((int)Images.GoldImage).color = new Color32(255, 255, 255, 0);
-
-        GetText((int)Texts.NameText).text = "";
-        GetText((int)Texts.SellText).text = "";
-        GetText((int)Texts.ReinforceText).text = "";
-        GetText((int)Texts.PotionLevelText).text = "";
-        GetText((int)Texts.SuccessRatioText).text = "";
-        GetText((int)Texts.PriceText).text = "";
+        Get<GameObject>((int)GameObjects.Potion).SetActive(false);
+        Get<GameObject>((int)GameObjects.Sell).SetActive(false);
+        Get<GameObject>((int)GameObjects.Reinforce).SetActive(false);
+        Get<GameObject>((int)GameObjects.Gauge).SetActive(false);
 
         potionFileName = null;
         currentPrice = 0;
