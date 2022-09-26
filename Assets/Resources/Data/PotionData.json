@@ -1,7 +1,24 @@
 ﻿{
   "potions": [
     {
-      "fileName": "leaf_green",
+      "fileName": "potion_blue",
+      "name": "파란 물약",
+      "price": "10",
+      "upgrades": [
+        {
+          "level": "1",
+          "ratio": "90",
+          "bonus": "1.05f"
+        },
+        {
+          "level": "2",
+          "ratio": "85",
+          "bonus": "1.2f"
+        }
+      ]
+    },
+    {
+      "fileName": "potion_green",
       "name": "초록 물약",
       "price": "10",
       "upgrades": [
@@ -18,8 +35,8 @@
       ]
     },
     {
-      "fileName": "leaf_red",
-      "name": "냥이 수혈팩",
+      "fileName": "potion_sky",
+      "name": "하늘 물약",
       "price": "10",
       "upgrades": [
         {
@@ -35,25 +52,8 @@
       ]
     },
     {
-      "fileName": "leaf_blue",
-      "name": "비명 지르는 문어씨",
-      "price": "10",
-      "upgrades": [
-        {
-          "level": "1",
-          "ratio": "90",
-          "bonus": "1.05f"
-        },
-        {
-          "level": "2",
-          "ratio": "85",
-          "bonus": "1.2f"
-        }
-      ]
-    },
-    {
-      "fileName": "1",
-      "name": "비명 지르는 문어씨",
+      "fileName": "tako_pink",
+      "name": "핑크 문어씨",
       "price": "100",
       "upgrades": [
         {
@@ -74,8 +74,8 @@
       ]
     },
     {
-      "fileName": "2",
-      "name": "비명 지르는 문어씨",
+      "fileName": "tako_blue",
+      "name": "퍼렁 문어씨",
       "price": "100",
       "upgrades": [
         {
@@ -96,8 +96,8 @@
       ]
     },
     {
-      "fileName": "3",
-      "name": "비명 지르는 문어씨",
+      "fileName": "tako_purple",
+      "name": "포도 문어씨",
       "price": "100",
       "upgrades": [
         {
@@ -118,8 +118,8 @@
       ]
     },
     {
-      "fileName": "4",
-      "name": "비명 지르는 문어씨",
+      "fileName": "neko_orange",
+      "name": "오렌지 냥이",
       "price": "1000",
       "upgrades": [
         {
@@ -133,15 +133,15 @@
           "bonus": "3.0f"
         },
         {
-          "level": "2",
+          "level": "3",
           "ratio": "30",
           "bonus": "5.0f"
         }
       ]
     },
     {
-      "fileName": "5",
-      "name": "비명 지르는 문어씨",
+      "fileName": "neko_purple",
+      "name": "포도 냥이",
       "price": "1000",
       "upgrades": [
         {
@@ -155,15 +155,15 @@
           "bonus": "3.0f"
         },
         {
-          "level": "2",
+          "level": "3",
           "ratio": "30",
           "bonus": "5.0f"
         }
       ]
     },
     {
-      "fileName": "6",
-      "name": "비명 지르는 문어씨",
+      "fileName": "neko_red",
+      "name": "사과 냥이",
       "price": "1000",
       "upgrades": [
         {
@@ -177,7 +177,7 @@
           "bonus": "3.0f"
         },
         {
-          "level": "2",
+          "level": "3",
           "ratio": "30",
           "bonus": "5.0f"
         }

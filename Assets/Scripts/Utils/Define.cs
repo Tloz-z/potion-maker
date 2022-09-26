@@ -21,7 +21,8 @@ public class Define : MonoBehaviour
     public enum UIEvent
     {
         Click,
-        Drag
+        Drag,
+        ClickDown
     }
 
     public enum MouseEvent

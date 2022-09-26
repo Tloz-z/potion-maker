@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,4 +61,43 @@ public class PotionData : ILoader<String, Potion>
         return dict;
     }
 }
+#endregion
+
+#region Store
+[Serializable]
+public abstract class StoreItem
+{
+    public string name;
+    public int price;
+    public string imagePath;
+
+    abstract public void BuyItem();
+}
+
+[Serializable]
+public class IngredientItem : StoreItem
+{
+    public int plusRange;
+
+    public override void BuyItem()
+    {
+        Managers.UI.SceneHead.BuyIngredients(this);
+    }
+}
+
+[Serializable]
+public class SkinItem : StoreItem
+{
+    public override void BuyItem()
+    {
+    }
+}
+
+[Serializable]
+public class StoreData
+{
+    public List<IngredientItem> ingredientItems = new List<IngredientItem>();
+    public List<SkinItem> skinItems = new List<SkinItem>();
+}
+
 #endregion

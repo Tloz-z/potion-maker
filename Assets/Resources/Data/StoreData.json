@@ -1,16 +1,23 @@
 ﻿{
-  "items": [
+  "ingredientItems": [
     {
-      "name": "2번째 재료",
-      "price": "300"
+      "name": "타코 패키지",
+      "price": "300",
+      "imagePath": "tako_package",
+      "plusRange": "3"
     },
     {
-      "name": "3번째 재료",
-      "price": "3000"
-    },
+      "name": "네코 패키지",
+      "price": "3000",
+      "imagePath": "neko_package",
+      "plusRange": "3"
+    }
+  ],
+  "skinItems": [
     {
       "name": "스킨",
-      "price": "500000"
+      "price": "500000",
+      "imagePath": "123"
     }
   ]
 }

@@ -1,49 +1,49 @@
 {
   "ingredients": [
     {
-      "name": "leaf_green",
-      "price": "1",
-      "potionName": "leaf_green"
-    },
-    {
-      "name": "leaf_red",
-      "price": "1",
-      "potionName": "leaf_red"
-    },
-    {
       "name": "leaf_blue",
       "price": "1",
-      "potionName": "leaf_blue"
+      "potionName": "potion_blue"
     },
     {
-      "name": "1",
+      "name": "leaf_green",
+      "price": "1",
+      "potionName": "potion_green"
+    },
+    {
+      "name": "leaf_sky",
+      "price": "1",
+      "potionName": "potion_sky"
+    },
+    {
+      "name": "tako_pink",
       "price": "5",
-      "potionName": "leaf_green"
+      "potionName": "tako_pink"
     },
     {
-      "name": "2",
+      "name": "tako_blue",
       "price": "5",
-      "potionName": "leaf_red"
+      "potionName": "tako_blue"
     },
     {
-      "name": "3",
+      "name": "tako_purple",
       "price": "5",
-      "potionName": "leaf_blue"
+      "potionName": "tako_purple"
     },
     {
-      "name": "4",
+      "name": "neko_orange",
       "price": "10",
-      "potionName": "leaf_green"
+      "potionName": "neko_orange"
     },
     {
-      "name": "5",
+      "name": "neko_purple",
       "price": "10",
-      "potionName": "leaf_red"
+      "potionName": "neko_purple"
     },
     {
-      "name": "6",
+      "name": "neko_red",
       "price": "10",
-      "potionName": "leaf_blue"
+      "potionName": "neko_red"
     }
   ]
 }

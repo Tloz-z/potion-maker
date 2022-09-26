@@ -5,8 +5,6 @@ using UnityEngine.EventSystems;
 
 public class UI_Ingredient : UI_Base
 {
-
-
     public string IngredientName { get; set; }
 
     private float _moveSpeed = 500.0f;
@@ -21,7 +19,7 @@ public class UI_Ingredient : UI_Base
 
     public override void Init()
     {
-        gameObject.BindEvent(OnClick);
+        gameObject.BindEvent(OnClick, Define.UIEvent.ClickDown);
         _rectTransform = GetComponent<RectTransform>();
         _isClick = false;
         _deltaTime = 0.0f;
