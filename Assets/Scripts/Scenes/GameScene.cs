@@ -11,8 +11,14 @@ public class GameScene : BaseScene
 
     void Start()
     {
-        Managers.UI.ShowSceneUI<UI_Head>();
-        Managers.UI.ShowSceneUI<UI_Tail>();
+        UI_Head head = Managers.UI.ShowSceneUI<UI_Head>();
+        UI_Tail tail = Managers.UI.ShowSceneUI<UI_Tail>();
+
+        head.Init();
+        tail.Init();
+
+        Managers.Save.LoadData();
+
         Managers.Sound.Play("BGM/Main", Define.Sound.Bgm);
     }
 

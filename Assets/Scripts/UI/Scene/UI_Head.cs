@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 public class UI_Head : UI_Scene
 {
@@ -44,11 +45,6 @@ public class UI_Head : UI_Scene
     //don't save
     public float OffsetY { get; private set; } = 0.0f;
 
-    void Start()
-    {
-        Init();
-    }
-
     public override void Init()
     {
         base.Init();
@@ -74,6 +70,24 @@ public class UI_Head : UI_Scene
         CreateIngredient();
     }
 
+    public void SaveData(SaveData saveData)
+    {
+        saveData.gold = Gold;
+        saveData.ingredientRange = IngredientRange;
+        saveData.buyItem = BuyItemSet.ToArray();
+    }
+
+    public void LoadData(SaveData saveData)
+    {
+        Gold = saveData.gold;
+        IngredientRange = saveData.ingredientRange;
+
+        foreach (string item in saveData.buyItem)
+            BuyItemSet.Add(item);
+
+        PrintGold();
+    }
+
     public void SellPotion(int price)
     {
         Gold += price;
@@ -86,6 +100,7 @@ public class UI_Head : UI_Scene
         Gold -= item.price;
         BuyItemSet.Add(item.name);
         PrintGold();
+        Managers.Save.SaveData();
     }
 
 
