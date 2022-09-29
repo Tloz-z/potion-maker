@@ -8,7 +8,7 @@ public class SaveData
 {
     //UI_Head
     public int gold;
-    public int ingredientRange;
+    public string[] ingredients;
     public string[] buyItem;
 
     //UI_Tail

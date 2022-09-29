@@ -8,22 +8,6 @@ using System.Linq;
 
 public class UI_Head : UI_Scene
 {
-
-    // 재료 찾는 방식 개선 필요
-    enum IngredientNames
-    {
-        leaf_blue,
-        leaf_green,
-        leaf_sky,
-        tako_pink,
-        tako_blue,
-        tako_purple,
-        neko_orange,
-        neko_purple,
-        neko_red
-    }
-    
-
     enum Texts
     {
         GoldText
@@ -38,7 +22,7 @@ public class UI_Head : UI_Scene
 
     //save
     public int Gold { get; private set; } = 0;
-    public int IngredientRange { get; private set; } = 3;
+    public List<string> Ingredients { get; private set; } = new List<string>();
     public HashSet<string> BuyItemSet { get; private set; } = new HashSet<string>();
 
 
@@ -48,6 +32,10 @@ public class UI_Head : UI_Scene
     public override void Init()
     {
         base.Init();
+
+        Ingredients.Add("leaf_blue");
+        Ingredients.Add("leaf_green");
+        Ingredients.Add("leaf_sky");
 
         Bind<Text>(typeof(Texts));
         Bind<GameObject>(typeof(GameObjects));
@@ -73,14 +61,16 @@ public class UI_Head : UI_Scene
     public void SaveData(SaveData saveData)
     {
         saveData.gold = Gold;
-        saveData.ingredientRange = IngredientRange;
+        saveData.ingredients = Ingredients.ToArray();
         saveData.buyItem = BuyItemSet.ToArray();
     }
 
     public void LoadData(SaveData saveData)
     {
         Gold = saveData.gold;
-        IngredientRange = saveData.ingredientRange;
+
+        foreach (string ingredient in saveData.ingredients)
+            Ingredients.Add(ingredient);
 
         foreach (string item in saveData.buyItem)
             BuyItemSet.Add(item);
@@ -96,7 +86,9 @@ public class UI_Head : UI_Scene
 
     public void BuyIngredients(IngredientItem item)
     {
-        IngredientRange += item.plusRange;
+        foreach (string ingredient in item.ingredients)
+            Ingredients.Add(ingredient);
+
         Gold -= item.price;
         BuyItemSet.Add(item.name);
         PrintGold();
@@ -125,15 +117,14 @@ public class UI_Head : UI_Scene
         }
         _currentTime = 0.0f;
 
-        int idx = UnityEngine.Random.Range(0, IngredientRange);
-        string ingredientName = Enum.GetName(typeof(IngredientNames), idx);
+        int idx = UnityEngine.Random.Range(0, Ingredients.Count);
+        string ingredientName = Ingredients[idx];
 
         Sprite sprite = Managers.Resource.Load<Sprite>($"Art/Ingredient/{ingredientName}");
         UI_Ingredient item = Managers.UI.makeSubItem<UI_Ingredient>(GetObject((int)GameObjects.IngredientBar).transform);
         item.Init();
         item.IngredientName = ingredientName;
         item.transform.position = GetObject((int)GameObjects.IngredientBar).transform.position;
-        item.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         item.gameObject.GetComponent<Image>().sprite = sprite;
     }
 

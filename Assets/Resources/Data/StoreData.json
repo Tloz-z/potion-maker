@@ -4,13 +4,21 @@
       "name": "타코 패키지",
       "price": "300",
       "imagePath": "tako_package",
-      "plusRange": "3"
+      "ingredients": [
+        "tako_pink",
+        "tako_blue",
+        "tako_purple"
+      ]
     },
     {
       "name": "네코 패키지",
-      "price": "3000",
+      "price": "10000",
       "imagePath": "neko_package",
-      "plusRange": "3"
+      "ingredients": [
+        "neko_orange",
+        "neko_purple",
+        "neko_red"
+      ]
     }
   ],
   "skinItems": [

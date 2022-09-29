@@ -77,7 +77,7 @@ public abstract class StoreItem
 [Serializable]
 public class IngredientItem : StoreItem
 {
-    public int plusRange;
+    public string[] ingredients;
 
     public override void BuyItem()
     {
